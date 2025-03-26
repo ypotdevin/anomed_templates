@@ -1,4 +1,4 @@
-# AnoMed Image Templates
+# AnoMed Docker Image Templates
 
 In this repository we provide templates to derive Docker images from web
 applications. You need such Docker images to submit them to the AnoMed platform.

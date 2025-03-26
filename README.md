@@ -59,6 +59,8 @@ is to define a suitable dockerfile. The dockerfile given at
 `./example_challenge/Dockerfile` serves as an example. We will discuss it here
 briefly.
 
+#### The Example `Dockerfile`
+
 We have good experience with the use of the python:3.10-slim base Docker image,
 which is why we choose that base image by stating `FROM python:3.10-slim`.
 
@@ -103,6 +105,8 @@ tell to start the container using
 to execute our entry point script with one parameter (`"challenge"`): the name
 of the module (without `.py` extension) containing the web application. Adjust
 this if your module is named differently.
+
+#### Building a Docker Image
 
 Assuming that you now have adjusting the dockerfile to your needs, only two more
 steps are necessary. The first is to build the Docker image. We will use the

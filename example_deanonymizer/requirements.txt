@@ -1,0 +1,9 @@
+anomed_deanonymizer
+anomed_utils
+adversarial-robustness-toolbox == 1.19.*
+gunicorn == 23.0.*
+numpy == 1.26.*
+# This should be a dependency of adversarial-robustness-toolbox, but apparently
+# their dependency list is not complete.
+packaging == 24.2
+requests == 2.32.*

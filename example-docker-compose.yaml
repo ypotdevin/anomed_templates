@@ -1,0 +1,78 @@
+---
+name: example
+
+services:
+  anomed-mock:
+    container_name: anomed_mock
+    build:
+      context: ./anomed_mock/
+      dockerfile: Dockerfile
+    hostname: anomed-app
+    image: anomed_mock
+    networks:
+      - backend
+    ports:
+      - "8000:80"
+
+  example_challenge:
+    container_name: example_challenge
+    build:
+      context: ./example_challenge/
+      dockerfile: Dockerfile
+    hostname: example-challenge
+    image: example_challenge
+    volumes:
+      - type: volume
+        source: example_challenge_volume
+        target: /persistent_data
+    environment:
+      - ANOMED_HOST=anomed-app
+    networks:
+      - backend
+    ports:
+      - "8001:80"
+
+  example_anonymizer:
+    container_name: example_anonymizer
+    build:
+      context: ./example_anonymizer/
+      dockerfile: Dockerfile
+    hostname: example-anonymizer
+    image: example_anonymizer
+    environment:
+      - CHALLENGE_HOST=example-challenge
+    volumes:
+      - type: volume
+        source: example_anonymizer_volume
+        target: /persistent_data
+    networks:
+      - backend
+    ports:
+      - "8002:80"
+
+  example_deanonymizer:
+    container_name: example_deanonymizer
+    build:
+      context: ./example_deanonymizer/
+      dockerfile: Dockerfile
+    hostname: example-deanonymizer
+    image: example_deanonymizer
+    environment:
+      - CHALLENGE_HOST=example-challenge
+      - ATTACK_TARGET_HOST=example-anonymizer
+    volumes:
+      - type: volume
+        source: example_deanonymizer_volume
+        target: /persistent_data
+    networks:
+      - backend
+    ports:
+      - "8003:80"
+
+networks:
+  backend:
+
+volumes:
+  example_challenge_volume:
+  example_anonymizer_volume:
+  example_deanonymizer_volume:

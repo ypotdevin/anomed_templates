@@ -115,7 +115,7 @@ command](https://docs.docker.com/get-started/docker-concepts/building-images/bui
 
 ```bash
 cd example_challenge
-docker build -t example_challenge:latest.
+docker build -t example_challenge:latest .
 ```
 
 Having successfully build an image with name `example_challenge` and tag
